@@ -12,12 +12,12 @@ Money::Money(QGraphicsItem* parent):
 
 void Money::decreaseAmount(int amount){
     m_money-=amount;
-    setPlainText(QString("X-wing bullets: ") + QString::number(m_money));
+    setPlainText(QString("Money: ") + QString::number(m_money));
 }
 
 void Money::increaseAmount(int amountForIncrease){
     m_money+=amountForIncrease;
-     setPlainText(QString("X-wing bullets: ") + QString::number(m_money));
+     setPlainText(QString("Money: ") + QString::number(m_money));
 }
 
 int Money::getMoneyAmount()

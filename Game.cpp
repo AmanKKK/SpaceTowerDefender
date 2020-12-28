@@ -19,9 +19,9 @@
 
 Game::Game(): QGraphicsView(){
 
-      QTime setting_time;
-      always_updating_time = new QTime(setting_time.currentTime());
-      pereodically_updating_time = new QTime(*always_updating_time);
+//      QTime setting_time;
+      always_updating_time = new QTime();
+      pereodically_updating_time = new QTime(always_updating_time->currentTime());
       *pereodically_updating_time = pereodically_updating_time->addSecs(120);
 
     // создание сцены
@@ -86,8 +86,8 @@ Game::Game(): QGraphicsView(){
 }
 
 void Game::increaseComplexity(){
-    qDebug() << "time1:" + pereodically_updating_time->toString("hh:mm:ss:zzz");
-    qDebug() << "time:" + always_updating_time->currentTime().toString("hh:mm:ss:zzz");
+    qDebug() << "periodically_updating_time:" + pereodically_updating_time->toString("hh:mm:ss:zzz");
+    qDebug() << "always_updating_time:" + always_updating_time->currentTime().toString("hh:mm:ss:zzz");
     // Максимальная сложность - это генерация вражеских объектов каждую секунду
    if(spawnSpeed >=1200){
        /* пришлость переводить время в string, так как оказалось,
