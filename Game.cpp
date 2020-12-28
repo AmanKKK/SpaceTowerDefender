@@ -12,6 +12,7 @@
 #include <QGraphicsLineItem>
 #include <QImage>
 #include <QBrush>
+#include <QDebug>
 
 Game::Game(): QGraphicsView(){
     // создание сцены
@@ -27,22 +28,29 @@ Game::Game(): QGraphicsView(){
     building = nullptr;
     setMouseTracking(true);
 
-
+    qDebug() << "hello";
     setFixedSize(800,600);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // создание вражеских объектов
-    spawnTimer = new QTimer(this);
+//    spawnTimer = new QTimer(this);
+//    connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
+//    spawnTimer->start(50);
     enemiesSpawned = 0;
-    maxNumberOfEnemies = 0;
+//    maxNumberOfEnemies = 0;
     pointsToFollow << QPointF(800,0) << QPointF(450,450) << QPointF(0,600);
 
-    createEnemies(20);
+//    createEnemies(20);
+    tmp_spawnEnemy();
 
     m_money = new Money();
     m_money->setPos(m_money->x()+75,m_money->y());
     scene->addItem(m_money);
+
+    m_health = new Health();
+    m_health->setPos(m_health->x()+75,m_health->y()+25);
+    scene->addItem(m_health);
 
 
     creatRoad();
@@ -59,6 +67,13 @@ Game::Game(): QGraphicsView(){
     scene->addItem(rt);
 
 
+}
+
+void Game::tmp_spawnEnemy(){
+    qDebug() << " hello";
+    spawnTimer = new QTimer(this);
+    connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
+    spawnTimer->start(spawnSpeed);
 }
 
 void Game::setCursor(QString filename){
@@ -102,12 +117,12 @@ void Game::mousePressEvent(QMouseEvent *event){
 
 }
 
-void Game::createEnemies(int numberOfEnemies){
-    enemiesSpawned = 0;
-    maxNumberOfEnemies = numberOfEnemies;
-    connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
-    spawnTimer->start(1000);
-}
+//void Game::createEnemies(int numberOfEnemies){
+//    enemiesSpawned = 0;
+//    maxNumberOfEnemies = numberOfEnemies;
+//    connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
+//    spawnTimer->start(1000);
+//}
 // траектория, по которой будут перемещаться вражеские объекты
 void Game::creatRoad(){
     for (size_t i = 0, n = pointsToFollow.size()-1; i < n; i++){
@@ -130,8 +145,16 @@ void Game::spawnEnemy(){
     enemy->setPos(pointsToFollow[0]);
     scene->addItem(enemy);
     enemiesSpawned += 1;
-
-    if (enemiesSpawned >= maxNumberOfEnemies){
-        spawnTimer->disconnect();
+    switch(enemiesSpawned)
+    {
+    case 10:{spawnSpeed-=200;qDebug()<< spawnSpeed;tmp_spawnEnemy(); break;}
+    case 15:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
+    case 20:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
+    case 25:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
+    case 30:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
     }
+
+//    if (enemiesSpawned >= maxNumberOfEnemies){
+//        spawnTimer->disconnect();
+//    }
 }

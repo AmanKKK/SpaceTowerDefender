@@ -4,7 +4,8 @@
 #include <qmath.h>
 #include "Game.h"
 
-
+extern Game* game;
+int STEP_SIZE = 5;
 
 #include <QDebug>
 Enemy::Enemy(QList<QPointF> pointsToFollow, QGraphicsItem *parent){
@@ -29,6 +30,10 @@ void Enemy::rotateToPoint(QPointF p){
     setRotation(-1 * ln.angle());
 }
 
+void Enemy::increaseSpeed(){
+    STEP_SIZE+=5;
+}
+
 void Enemy::moveForward(){
 
     // если вражеский объект доходит до dest, то происходит его ротация до следующего dest
@@ -46,7 +51,7 @@ void Enemy::moveForward(){
     }
 
     // перемещение вражеского объекта под текущим углом
-    int STEP_SIZE = 5;
+//    int STEP_SIZE = 5;
     double theta = rotation(); // получение градусов
 
     double dy = STEP_SIZE * qSin(qDegreesToRadians(theta));
@@ -54,6 +59,7 @@ void Enemy::moveForward(){
 
     setPos(x()+dx, y()+dy);
     if(pos().x() < 5){
+    game->m_health->decrease();
 
         qDebug() << " passed " + QString::number(pos().x()) ;
     }

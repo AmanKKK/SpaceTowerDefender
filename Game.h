@@ -6,6 +6,7 @@
 #include <QGraphicsPixmapItem>
 #include "Tower.h"
 #include "Money.h"
+#include "Health.h"
 
 
 
@@ -19,10 +20,13 @@ public:
     void mousePressEvent(QMouseEvent *event);
     void createEnemies(int numberOfEnemies);
     void creatRoad();
+    void tmp_spawnEnemy();
 
     // переменные члены
     int enemiesSpawned;
-    int maxNumberOfEnemies;
+    int spawnSpeed = 2000;
+//    int maxNumberOfEnemies;
+    Health* m_health;
     Money* m_money;
     QGraphicsScene * scene;
     QGraphicsPixmapItem * cursor;

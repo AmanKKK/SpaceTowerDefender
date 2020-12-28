@@ -14,6 +14,8 @@ public:
     void enemyPassed();
 public slots:
     void moveForward();
+    void increaseSpeed();
+
 private:
     QList<QPointF> points;
     QPointF dest;  // направление, в котором будет двигаться вражеский объект
