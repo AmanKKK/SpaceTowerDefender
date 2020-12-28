@@ -20,37 +20,9 @@
 Game::Game(): QGraphicsView(){
 
       QTime t;
-
       time = new QTime(t.currentTime());
-//    qDebug() << "time:" + time->toString("hh:mm:ss:zz");
       time1 = new QTime(*time);
       *time1 = time1->addSecs(120);
-
-//    if(*time == *time1){
-//        qDebug() << "works!";
-//    }
-
-//    qDebug() << "time1" + time1->toString("hh:mm:ss:zz");
-//    for(int i=0;i<3;i++){
-//       *time1 = time1->addSecs(180);
-//        qDebug() << *time1;
-//    }
-
-//    qDebug() << *time1;
-
-
-
-
-
-
-
-
-//    t = time1->addSecs(1000);
-//    qDebug() << t;
-
-
-
-
 
     // создание сцены
     scene = new QGraphicsScene(this);
@@ -70,20 +42,16 @@ Game::Game(): QGraphicsView(){
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    // создание вражеских объектов
-//    spawnTimer = new QTimer(this);
-//    connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
-//    spawnTimer->start(50);
+
 
     timer_checker = new QTimer(this);
     connect(timer_checker,SIGNAL(timeout()),this,SLOT(increaseComplexity()));
     timer_checker->start(1000);
 
-    enemiesSpawned = 0;
-//    maxNumberOfEnemies = 0;
+
     pointsToFollow << QPointF(800,0) << QPointF(450,450) << QPointF(0,600);
 
-//    createEnemies(20);
+
     tmp_spawnEnemy();
 
     m_money = new Money();
@@ -175,12 +143,7 @@ void Game::mousePressEvent(QMouseEvent *event){
 }
 
 
-//void Game::createEnemies(int numberOfEnemies){
-//    enemiesSpawned = 0;
-//    maxNumberOfEnemies = numberOfEnemies;
-//    connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
-//    spawnTimer->start(1000);
-//}
+
 
 
 // траектория, по которой будут перемещаться вражеские объекты
@@ -204,28 +167,8 @@ void Game::spawnEnemy(){
     Enemy * enemy = new Enemy(pointsToFollow);
     enemy->setPos(pointsToFollow[0]);
     scene->addItem(enemy);
-    enemiesSpawned += 1;
 
 
-//    qDebug() << time->toString("h");
-//    qDebug() << *time1;
-//    if(*time1 == *time){
-//        qDebug() << "hello";
-//    }else{
-//        qDebug() << "also hello";
-//    }
 
 
-//    switch(enemiesSpawned)
-//    {
-//    case 10:{spawnSpeed-=200;qDebug()<< spawnSpeed;tmp_spawnEnemy(); break;}
-//    case 15:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
-//    case 20:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
-//    case 25:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
-//    case 30:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
-//    }
-
-//    if (enemiesSpawned >= maxNumberOfEnemies){
-//        spawnTimer->disconnect();
-//    }
 }

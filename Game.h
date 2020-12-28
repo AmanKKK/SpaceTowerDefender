@@ -26,9 +26,7 @@ public:
     // переменные члены
     QTime* time;
     QTime* time1;
-    int enemiesSpawned;
     int spawnSpeed = 2000;
-//    int maxNumberOfEnemies;
     Health* m_health;
     Money* m_money;
     QGraphicsScene * scene;

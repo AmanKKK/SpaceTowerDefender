@@ -9,11 +9,11 @@ BuildBrownTowerIcon::BuildBrownTowerIcon(QGraphicsItem *parent): QGraphicsPixmap
 }
 
 void BuildBrownTowerIcon::mousePressEvent(QGraphicsSceneMouseEvent* event){
-    if(game->m_money->getMoneyAmount()>200){
+    if(game->m_money->getMoneyAmount()>500){
     if (!game->building){
         game->building = new BrownTower();
         game->setCursor(QString(":/s_images/resources/images/brown_space_tower.png"));
-        game->m_money->decreaseAmount(200);
+        game->m_money->decreaseAmount(500);
     }
     }
 }

@@ -7,7 +7,7 @@
 class Money: public QGraphicsTextItem
 {
 private:
-    int m_money=500;
+    int m_money=765;
 public:
     Money(QGraphicsItem* parent = 0);
 
