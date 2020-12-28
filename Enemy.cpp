@@ -5,7 +5,7 @@
 #include "Game.h"
 
 extern Game* game;
-int STEP_SIZE = 5;
+
 
 #include <QDebug>
 Enemy::Enemy(QList<QPointF> pointsToFollow, QGraphicsItem *parent){
@@ -30,9 +30,7 @@ void Enemy::rotateToPoint(QPointF p){
     setRotation(-1 * ln.angle());
 }
 
-void Enemy::increaseSpeed(){
-    STEP_SIZE+=5;
-}
+
 
 void Enemy::moveForward(){
 
@@ -51,7 +49,7 @@ void Enemy::moveForward(){
     }
 
     // перемещение вражеского объекта под текущим углом
-//    int STEP_SIZE = 5;
+    int STEP_SIZE = 5;
     double theta = rotation(); // получение градусов
 
     double dy = STEP_SIZE * qSin(qDegreesToRadians(theta));

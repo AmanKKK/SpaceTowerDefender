@@ -35,6 +35,9 @@ public:
     QList<QPointF> pointsToFollow;
 public slots:
     void spawnEnemy();
+
+
+
 };
 
 

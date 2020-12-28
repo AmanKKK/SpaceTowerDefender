@@ -14,7 +14,6 @@ public:
     void enemyPassed();
 public slots:
     void moveForward();
-    void increaseSpeed();
 
 private:
     QList<QPointF> points;

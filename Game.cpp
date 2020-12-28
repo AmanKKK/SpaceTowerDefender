@@ -13,6 +13,7 @@
 #include <QImage>
 #include <QBrush>
 #include <QDebug>
+int counter=0;
 
 Game::Game(): QGraphicsView(){
     // создание сцены
@@ -70,7 +71,7 @@ Game::Game(): QGraphicsView(){
 }
 
 void Game::tmp_spawnEnemy(){
-    qDebug() << " hello";
+    qDebug() << ++counter;
     spawnTimer = new QTimer(this);
     connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
     spawnTimer->start(spawnSpeed);
@@ -145,6 +146,7 @@ void Game::spawnEnemy(){
     enemy->setPos(pointsToFollow[0]);
     scene->addItem(enemy);
     enemiesSpawned += 1;
+
     switch(enemiesSpawned)
     {
     case 10:{spawnSpeed-=200;qDebug()<< spawnSpeed;tmp_spawnEnemy(); break;}
