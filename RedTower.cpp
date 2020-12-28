@@ -13,14 +13,19 @@ RedTower::RedTower(QGraphicsItem *parent){
 
 void RedTower::fire(){
     Bullet * bullet = new Bullet();
+    Bullet * bullet1 = new Bullet();
     bullet->setPixmap(QPixmap(":/s_images/resources/images/red_laser.png"));
+    bullet1->setPixmap(QPixmap(":/s_images/resources/images/red_laser.png"));
     bullet->setPos(x()+40,y()+40);
+    bullet1->setPos(x()+40,y()+40);
 
     QLineF ln(QPointF(x()+40,y()+40),attack_dest);
     int angle = -1 * ln.angle();
 
     bullet->setRotation(angle);
+    bullet1->setRotation(angle+10);
     game->scene->addItem(bullet);
+    game->scene->addItem(bullet1);
 }
 
 void RedTower::aquire_target(){

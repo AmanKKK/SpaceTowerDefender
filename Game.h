@@ -5,7 +5,8 @@
 #include <QMouseEvent>
 #include <QGraphicsPixmapItem>
 #include "Tower.h"
-#include "Health.h"
+#include "Money.h"
+
 
 
 class Game: public QGraphicsView{
@@ -20,13 +21,13 @@ public:
     void creatRoad();
 
     // переменные члены
+    int enemiesSpawned;
+    int maxNumberOfEnemies;
+    Money* m_money;
     QGraphicsScene * scene;
     QGraphicsPixmapItem * cursor;
     Tower * building;
-    QTimer * spawnTimer;
-    int enemiesSpawned;
-    int maxNumberOfEnemies;
-    Health* m_health;
+    QTimer * spawnTimer; 
     QList<QPointF> pointsToFollow;
 public slots:
     void spawnEnemy();

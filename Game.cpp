@@ -38,7 +38,11 @@ Game::Game(): QGraphicsView(){
     maxNumberOfEnemies = 0;
     pointsToFollow << QPointF(800,0) << QPointF(450,450) << QPointF(0,600);
 
-    createEnemies(5);
+    createEnemies(20);
+
+    m_money = new Money();
+    m_money->setPos(m_money->x()+75,m_money->y());
+    scene->addItem(m_money);
 
 
     creatRoad();
@@ -58,6 +62,7 @@ Game::Game(): QGraphicsView(){
 }
 
 void Game::setCursor(QString filename){
+
     if (cursor){
         scene->removeItem(cursor);
         delete cursor;
@@ -93,6 +98,7 @@ void Game::mousePressEvent(QMouseEvent *event){
     else {
         QGraphicsView::mousePressEvent(event);
     }
+    //
 
 }
 

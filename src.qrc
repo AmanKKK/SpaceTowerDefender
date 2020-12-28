@@ -13,4 +13,7 @@
         <file>resources/images/green_laser.png</file>
         <file>resources/images/red_laser.png</file>
     </qresource>
+    <qresource prefix="/s_media">
+        <file>resources/media/laser_sound.mp3</file>
+    </qresource>
 </RCC>

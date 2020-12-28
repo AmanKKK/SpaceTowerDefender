@@ -9,8 +9,11 @@ BuildGreenTowerIcon::BuildGreenTowerIcon(QGraphicsItem *parent): QGraphicsPixmap
 }
 
 void BuildGreenTowerIcon::mousePressEvent(QGraphicsSceneMouseEvent* event){
-    if (!game->building){
+    if(game->m_money->getMoneyAmount()>=500){
+    if(!game->building){
         game->building = new GreenTower();
         game->setCursor(QString(":/s_images/resources/images/green_space_tower.png"));
+        game->m_money->decreaseAmount(500);
+    }
     }
 }

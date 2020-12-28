@@ -1,4 +1,5 @@
-QT       += core gui
+QT       += core gui \
+        multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,7 +25,7 @@ SOURCES += \
     Enemy.cpp \
     Game.cpp \
     GreenTower.cpp \
-    Health.cpp \
+    Money.cpp \
     RedTower.cpp \
     Tower.cpp \
     main.cpp \
@@ -39,7 +40,7 @@ HEADERS += \
     Enemy.h \
     Game.h \
     GreenTower.h \
-    Health.h \
+    Money.h \
     RedTower.h \
     Tower.h \
     mainwindow.h
