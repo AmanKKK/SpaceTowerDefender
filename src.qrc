@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/"/>
+    <qresource prefix="/s_images">
+        <file>resources/images/background.png</file>
+        <file>resources/images/TIEFighter.png</file>
+        <file>resources/images/green_tower_icon.png</file>
+        <file>resources/images/brown_tower_icon.png</file>
+        <file>resources/images/red_tower_icon.png</file>
+        <file>resources/images/brown_space_tower.png</file>
+        <file>resources/images/green_space_tower.png</file>
+        <file>resources/images/red_space_tower.png</file>
+        <file>resources/images/brown_laser.png</file>
+        <file>resources/images/green_laser.png</file>
+        <file>resources/images/red_laser.png</file>
+    </qresource>
+</RCC>
