@@ -28,6 +28,7 @@ SOURCES += \
     Health.cpp \
     Money.cpp \
     RedTower.cpp \
+    ShowLevel.cpp \
     Tower.cpp \
     main.cpp \
     mainwindow.cpp
@@ -44,6 +45,7 @@ HEADERS += \
     Health.h \
     Money.h \
     RedTower.h \
+    ShowLevel.h \
     Tower.h \
     mainwindow.h
 

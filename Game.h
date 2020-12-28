@@ -7,6 +7,7 @@
 #include "Tower.h"
 #include "Money.h"
 #include "Health.h"
+#include "ShowLevel.h"
 #include <QTime>
 
 
@@ -27,6 +28,7 @@ public:
     QTime* always_updating_time;
     QTime* pereodically_updating_time;
     int spawnSpeed = 2000;
+    ShowLevel* m_level;
     Health* m_health;
     Money* m_money;
     QGraphicsScene * scene;

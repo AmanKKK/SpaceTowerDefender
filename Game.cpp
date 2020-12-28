@@ -68,6 +68,10 @@ Game::Game(): QGraphicsView(){
     m_health->setPos(m_health->x()+75,m_health->y()+25);
     scene->addItem(m_health);
 
+    m_level = new ShowLevel();
+    m_level->setPos(m_level->x()+75,m_level->y()+50);
+    scene->addItem(m_level);
+
 
     creatRoad();
 
@@ -97,6 +101,7 @@ void Game::increaseComplexity(){
         * что именно будет выводиться.
         */
     if(always_updating_time->currentTime().toString("hh:mm:ss") == pereodically_updating_time->toString("hh:mm:ss")){
+        this->m_level->increaseLevel();
         qDebug() << "coincidence marked";
         *pereodically_updating_time = pereodically_updating_time->addSecs(180);
         spawnSpeed -=200;
@@ -109,6 +114,7 @@ void Game::increaseComplexity(){
 }
 
 void Game::tmp_spawnEnemy(){
+
     spawnTimer = new QTimer(this);
     connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
     spawnTimer->start(spawnSpeed);
