@@ -7,12 +7,13 @@
 #include <QList>
 
 
+
 extern Game * game;
 
 Bullet::Bullet(QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent){
+
     // установка коричневого лазера
     setPixmap(QPixmap(":/s_images/resources/images/brown_laser.png"));
-
     // подключение объекта таймера к объекту bullet к слоту move()
     QTimer * move_timer = new QTimer(this);
     connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
