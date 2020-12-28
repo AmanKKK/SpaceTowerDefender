@@ -5,7 +5,7 @@
 #include <qmath.h> // qSin, qCos, qTan
 #include "Game.h"
 #include <QList>
-#include <QMediaPlayer>
+
 
 extern Game * game;
 
@@ -17,9 +17,7 @@ Bullet::Bullet(QGraphicsItem *parent): QObject(),QGraphicsPixmapItem(parent){
     QTimer * move_timer = new QTimer(this);
     connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
     move_timer->start(50); // каждые 50 милисекунд будет вызываться слот move(), для передвижение снаряда
-    QMediaPlayer* sound_of_fire = new QMediaPlayer();
-    sound_of_fire->setMedia(QUrl(":/s_media/resources/media/laser_sound.mp3"));
-    sound_of_fire->play();
+
     //инициализация значений
     maxRange = 100;
     distanceTravelled = 0;
