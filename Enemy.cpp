@@ -2,6 +2,9 @@
 #include <QPixmap>
 #include <QTimer>
 #include <qmath.h>
+#include "Game.h"
+
+
 
 #include <QDebug>
 Enemy::Enemy(QList<QPointF> pointsToFollow, QGraphicsItem *parent){
@@ -50,4 +53,10 @@ void Enemy::moveForward(){
     double dx = STEP_SIZE * qCos(qDegreesToRadians(theta));
 
     setPos(x()+dx, y()+dy);
+    if(pos().x() < 5){
+
+        qDebug() << " passed " + QString::number(pos().x()) ;
+    }
 }
+
+\

@@ -11,12 +11,14 @@ class Enemy: public QObject, public QGraphicsPixmapItem{
 public:
     Enemy(QList<QPointF> pointsToFollow, QGraphicsItem * parent=0);
     void rotateToPoint(QPointF p); // метод для ротации объекта относительно точки
+    void enemyPassed();
 public slots:
     void moveForward();
 private:
     QList<QPointF> points;
     QPointF dest;  // направление, в котором будет двигаться вражеский объект
     int point_index;
+
 };
 
 #endif // ENEMY_H

@@ -1,8 +1,10 @@
 #include "Bullet.h"
+#include "Enemy.h"
 #include <QPixmap>
 #include <QTimer>
 #include <qmath.h> // qSin, qCos, qTan
 #include "Game.h"
+#include <QList>
 
 extern Game * game;
 
@@ -29,6 +31,25 @@ void Bullet::move(){
     double dx = STEP_SIZE * qCos(qDegreesToRadians(theta));
 
     setPos(x()+dx, y()+dy);
+
+    QList<QGraphicsItem*> colliding_items = collidingItems();
+        for(int i=0,n=colliding_items.size();i<n;++i){
+            if(typeid(*(colliding_items[i])) == typeid(Enemy)){
+
+
+                   scene()->removeItem(colliding_items[i]);
+                   scene()->removeItem(this);
+                   delete colliding_items[i];
+                   delete this;
+
+
+                   return;
+
+
+        }
+        }
+
+
 }
 
 double Bullet::getMaxRange(){

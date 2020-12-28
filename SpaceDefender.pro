@@ -24,6 +24,7 @@ SOURCES += \
     Enemy.cpp \
     Game.cpp \
     GreenTower.cpp \
+    Health.cpp \
     RedTower.cpp \
     Tower.cpp \
     main.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     Enemy.h \
     Game.h \
     GreenTower.h \
+    Health.h \
     RedTower.h \
     Tower.h \
     mainwindow.h
