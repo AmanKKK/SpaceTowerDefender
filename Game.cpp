@@ -13,9 +13,45 @@
 #include <QImage>
 #include <QBrush>
 #include <QDebug>
-int counter=0;
+
+
+
 
 Game::Game(): QGraphicsView(){
+
+      QTime t;
+
+      time = new QTime(t.currentTime());
+//    qDebug() << "time:" + time->toString("hh:mm:ss:zz");
+      time1 = new QTime(*time);
+      *time1 = time1->addSecs(120);
+
+//    if(*time == *time1){
+//        qDebug() << "works!";
+//    }
+
+//    qDebug() << "time1" + time1->toString("hh:mm:ss:zz");
+//    for(int i=0;i<3;i++){
+//       *time1 = time1->addSecs(180);
+//        qDebug() << *time1;
+//    }
+
+//    qDebug() << *time1;
+
+
+
+
+
+
+
+
+//    t = time1->addSecs(1000);
+//    qDebug() << t;
+
+
+
+
+
     // создание сцены
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0,0,800,600);
@@ -29,7 +65,7 @@ Game::Game(): QGraphicsView(){
     building = nullptr;
     setMouseTracking(true);
 
-    qDebug() << "hello";
+
     setFixedSize(800,600);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -38,6 +74,11 @@ Game::Game(): QGraphicsView(){
 //    spawnTimer = new QTimer(this);
 //    connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
 //    spawnTimer->start(50);
+
+    timer_checker = new QTimer(this);
+    connect(timer_checker,SIGNAL(timeout()),this,SLOT(increaseComplexity()));
+    timer_checker->start(1000);
+
     enemiesSpawned = 0;
 //    maxNumberOfEnemies = 0;
     pointsToFollow << QPointF(800,0) << QPointF(450,450) << QPointF(0,600);
@@ -70,8 +111,23 @@ Game::Game(): QGraphicsView(){
 
 }
 
+void Game::increaseComplexity(){
+    qDebug() << "time1:" + time1->toString("hh:mm:ss:zzz");
+    qDebug() << "time:" + time->currentTime().toString("hh:mm:ss:zzz");
+   if(spawnSpeed >=1200){
+    if(time->currentTime().toString("hh:mm:ss") == time1->toString("hh:mm:ss")){
+        qDebug() << "coincidence marked";
+        *time1 = time1->addSecs(180);
+        spawnSpeed -=200;
+        tmp_spawnEnemy();
+    }
+   }else{
+       timer_checker->disconnect();
+   }
+
+}
+
 void Game::tmp_spawnEnemy(){
-    qDebug() << ++counter;
     spawnTimer = new QTimer(this);
     connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
     spawnTimer->start(spawnSpeed);
@@ -118,12 +174,15 @@ void Game::mousePressEvent(QMouseEvent *event){
 
 }
 
+
 //void Game::createEnemies(int numberOfEnemies){
 //    enemiesSpawned = 0;
 //    maxNumberOfEnemies = numberOfEnemies;
 //    connect(spawnTimer,SIGNAL(timeout()),this,SLOT(spawnEnemy()));
 //    spawnTimer->start(1000);
 //}
+
+
 // траектория, по которой будут перемещаться вражеские объекты
 void Game::creatRoad(){
     for (size_t i = 0, n = pointsToFollow.size()-1; i < n; i++){
@@ -147,14 +206,24 @@ void Game::spawnEnemy(){
     scene->addItem(enemy);
     enemiesSpawned += 1;
 
-    switch(enemiesSpawned)
-    {
-    case 10:{spawnSpeed-=200;qDebug()<< spawnSpeed;tmp_spawnEnemy(); break;}
-    case 15:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
-    case 20:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
-    case 25:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
-    case 30:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
-    }
+
+//    qDebug() << time->toString("h");
+//    qDebug() << *time1;
+//    if(*time1 == *time){
+//        qDebug() << "hello";
+//    }else{
+//        qDebug() << "also hello";
+//    }
+
+
+//    switch(enemiesSpawned)
+//    {
+//    case 10:{spawnSpeed-=200;qDebug()<< spawnSpeed;tmp_spawnEnemy(); break;}
+//    case 15:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
+//    case 20:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
+//    case 25:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
+//    case 30:{spawnSpeed-=200;tmp_spawnEnemy(); break;}
+//    }
 
 //    if (enemiesSpawned >= maxNumberOfEnemies){
 //        spawnTimer->disconnect();

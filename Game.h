@@ -7,6 +7,7 @@
 #include "Tower.h"
 #include "Money.h"
 #include "Health.h"
+#include <QTime>
 
 
 
@@ -23,6 +24,8 @@ public:
     void tmp_spawnEnemy();
 
     // переменные члены
+    QTime* time;
+    QTime* time1;
     int enemiesSpawned;
     int spawnSpeed = 2000;
 //    int maxNumberOfEnemies;
@@ -32,9 +35,11 @@ public:
     QGraphicsPixmapItem * cursor;
     Tower * building;
     QTimer * spawnTimer; 
+    QTimer * timer_checker;
     QList<QPointF> pointsToFollow;
 public slots:
     void spawnEnemy();
+    void increaseComplexity();
 
 
 
