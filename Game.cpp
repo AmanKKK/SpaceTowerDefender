@@ -19,10 +19,10 @@
 
 Game::Game(): QGraphicsView(){
 
-      QTime t;
-      time = new QTime(t.currentTime());
-      time1 = new QTime(*time);
-      *time1 = time1->addSecs(120);
+      QTime setting_time;
+      always_updating_time = new QTime(setting_time.currentTime());
+      pereodically_updating_time = new QTime(*always_updating_time);
+      *pereodically_updating_time = pereodically_updating_time->addSecs(120);
 
     // создание сцены
     scene = new QGraphicsScene(this);
@@ -43,7 +43,13 @@ Game::Game(): QGraphicsView(){
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
 
-
+    /* создаем таймер для метода increaseComplexity, так для повышения сложности игры
+     * создаются два объекта QTime, в одном из них текущее время, которое можно получить
+     * используя метод currentTime(), в другом объекте хранится время на +2 минуты больше
+     * текущего. Это будет необходимы для сравнения в слоте increaseComplexity(), так
+     * если во втором if-e слота increaseComplexity() , значение будет true, то тогда
+     * интервал создания вражеских объектов будет уменьшаться
+    */
     timer_checker = new QTimer(this);
     connect(timer_checker,SIGNAL(timeout()),this,SLOT(increaseComplexity()));
     timer_checker->start(1000);
@@ -80,12 +86,19 @@ Game::Game(): QGraphicsView(){
 }
 
 void Game::increaseComplexity(){
-    qDebug() << "time1:" + time1->toString("hh:mm:ss:zzz");
-    qDebug() << "time:" + time->currentTime().toString("hh:mm:ss:zzz");
+    qDebug() << "time1:" + pereodically_updating_time->toString("hh:mm:ss:zzz");
+    qDebug() << "time:" + always_updating_time->currentTime().toString("hh:mm:ss:zzz");
+    // Максимальная сложность - это генерация вражеских объектов каждую секунду
    if(spawnSpeed >=1200){
-    if(time->currentTime().toString("hh:mm:ss") == time1->toString("hh:mm:ss")){
+       /* пришлость переводить время в string, так как оказалось,
+        * что у двух объектов класса QTime разное количество миллисекунд,
+        * хотя разница между ними состовляет ровно 120 секунд.
+        * Поэтому использовал метод toString(), так как в нем можно указывать
+        * что именно будет выводиться.
+        */
+    if(always_updating_time->currentTime().toString("hh:mm:ss") == pereodically_updating_time->toString("hh:mm:ss")){
         qDebug() << "coincidence marked";
-        *time1 = time1->addSecs(180);
+        *pereodically_updating_time = pereodically_updating_time->addSecs(180);
         spawnSpeed -=200;
         tmp_spawnEnemy();
     }

@@ -24,8 +24,8 @@ public:
     void tmp_spawnEnemy();
 
     // переменные члены
-    QTime* time;
-    QTime* time1;
+    QTime* always_updating_time;
+    QTime* pereodically_updating_time;
     int spawnSpeed = 2000;
     Health* m_health;
     Money* m_money;
