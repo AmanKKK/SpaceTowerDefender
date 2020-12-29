@@ -4,7 +4,7 @@
 Money::Money(QGraphicsItem* parent):
      QGraphicsTextItem(parent)
  {
-    setPlainText(QString("Money: ") + QString::number(m_money));
+    setPlainText(QString("Points: ") + QString::number(m_money));
     setDefaultTextColor(Qt::yellow);
     setFont(QFont("times",13));
 
@@ -12,12 +12,12 @@ Money::Money(QGraphicsItem* parent):
 
 void Money::decreaseAmount(int amount){
     m_money-=amount;
-    setPlainText(QString("Money: ") + QString::number(m_money));
+    setPlainText(QString("Points: ") + QString::number(m_money));
 }
 
 void Money::increaseAmount(int amountForIncrease){
     m_money+=amountForIncrease;
-     setPlainText(QString("Money: ") + QString::number(m_money));
+     setPlainText(QString("Points: ") + QString::number(m_money));
 }
 
 int Money::getMoneyAmount()
