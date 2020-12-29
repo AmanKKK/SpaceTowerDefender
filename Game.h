@@ -23,7 +23,6 @@ public:
     void setCursor(QString filename);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
-    void createEnemies(int numberOfEnemies);
     void creatRoad();
     void tmp_spawnEnemy();
 
