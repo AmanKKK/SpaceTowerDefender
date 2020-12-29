@@ -35,7 +35,7 @@ Game::Game(): QGraphicsView(){
     //установка курсора
     cursor = nullptr;
     building = nullptr;
-    setMouseTracking(true);
+    setMouseTracking(true); // отслеживание движений мышью
 
 
     setFixedSize(800,600);

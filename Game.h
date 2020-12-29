@@ -17,6 +17,9 @@ class Game: public QGraphicsView{
 public:
     // методы класса
     Game();
+    /* В этом методе происходит перерисовка курсора. То есть, когда мы нажимаем курсором на иконку башни, курсор
+     * перерисовывается в одну из башен, взависимости какая из них была выбрана
+     */
     void setCursor(QString filename);
     void mouseMoveEvent(QMouseEvent *event);
     void mousePressEvent(QMouseEvent *event);
